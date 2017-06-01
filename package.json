@@ -1,0 +1,28 @@
+{
+  "name": "typescript-course",
+  "version": "1.0.0",
+  "description": "API desenvolvida, com TS, ES6, SEQUELIZE",
+  "main": "server/server.ts",
+  "scripts": {
+    "start" : "./node_modules/.bind/ts-node ./server/server.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "API",
+    "TypeScript",
+    "Node",
+    "ES6"
+  ],
+  "author": "Luis Henrique Gomes CAmilo",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "http": "0.0.0",
+    "morgan": "^1.8.2",
+    "pg": "^6.2.3"
+  },
+  "devDependencies": {
+    "ts-node": "^3.0.4"
+  }
+}
