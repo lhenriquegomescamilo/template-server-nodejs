@@ -4,7 +4,7 @@
   "description": "API desenvolvida, com TS, ES6, SEQUELIZE",
   "main": "server/server.ts",
   "scripts": {
-    "start" : "./node_modules/.bind/ts-node ./server/server.ts",
+    "start": "./node_modules/.bind/ts-node ./server/server.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -23,6 +23,10 @@
     "pg": "^6.2.3"
   },
   "devDependencies": {
+    "@types/body-parser": "^1.16.3",
+    "@types/express": "^4.0.35",
+    "@types/morgan": "^1.7.32",
+    "@types/pg": "^6.1.40",
     "ts-node": "^3.0.4"
   }
 }
