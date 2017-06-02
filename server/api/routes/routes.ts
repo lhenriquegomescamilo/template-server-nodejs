@@ -1,7 +1,7 @@
 import { Application, Request, Response } from 'express';
 
 
-class Routers {
+class Routes {
     constructor(application: Application) {
         this._initRoutes(application);
     }
@@ -16,4 +16,4 @@ class Routers {
     }
 }
 
-export default Routers;
+export default Routes;
