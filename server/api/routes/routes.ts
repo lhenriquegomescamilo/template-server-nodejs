@@ -8,9 +8,9 @@ class Routes {
 
     private _initRoutes(application: Application): void {
         application.route('/')
-            .get((req: Request, res: Response) => res.send('Hello word'));
+            .get((req: Request, res: Response) => res.send('Hello, world!'));
 
-        application.route('hello/:name')
+        application.route('/hello/:name')
             .get((req: Request, res: Response) => res.send(`Hello, ${req.params.name}`));
 
     }

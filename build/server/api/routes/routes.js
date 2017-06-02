@@ -6,8 +6,8 @@ var Routes = (function () {
     }
     Routes.prototype._initRoutes = function (application) {
         application.route('/')
-            .get(function (req, res) { return res.send('Hello word'); });
-        application.route('hello/:name')
+            .get(function (req, res) { return res.send('Hello, world!'); });
+        application.route('/hello/:name')
             .get(function (req, res) { return res.send("Hello, " + req.params.name); });
     };
     return Routes;

@@ -1,6 +1,31 @@
 import { app, request, expect } from './config/helpers';
 
 describe('Tests of integration', () => {
+
+
+    describe('GET /', () => {
+        it('Should be return the mensagem Hello, wolrd', done => {
+            request(app).get('/').end((error, response) => {
+                expect(response.status).to.equal(200);
+                expect(response.text).to.be.eql('Hello, world!');
+                done(error);
+            });
+        });
+    });
+
+    describe('GET /hello/:name', () => {
+        it('Should be return the mensage Hello, Test with typescript', done => {
+            const name = 'Test with typescript';
+            request(app)
+                .get(`/hello/${name}`)
+                .end((error, response) => {
+                    expect(response.status).to.equal(200);
+                    expect(response.text).to.be.eql('Hello, Test with typescript');
+                    done(error);
+                });
+        });
+    });
+
     describe('GET /api/users/all', () => {
         it('Should return the json with all users', done => {
             request(app)
