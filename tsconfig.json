@@ -1,7 +1,9 @@
 {
     "include": [
         "server/**/*.ts",
-        "server/*.ts"
+        "server/*.ts",
+        "test/**/*.ts",
+        "test/*.ts"
     ],
     "exclude": ["node_modules"],
     "buildOnSave": true,

@@ -26,7 +26,5 @@ class Api {
     private _router(application: Application): void {
         new Routes(application);
     }
-
-
 }
 export default new Api().express;

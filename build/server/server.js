@@ -8,4 +8,4 @@ var server = http.createServer(api_1.default);
 // Api.use(errorHandlerApi);
 server.listen(config.serverPort);
 server.on('listening', function () { return console.log("Server are running on port " + config.serverPort); });
-server.on('error', function (error) { return console.log("Ocurred a erro " + error.message); });
+server.on('error', function (error) { return console.log("Occurred a erro " + error.message); });

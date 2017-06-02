@@ -12,4 +12,4 @@ const server = http.createServer(Api);
 server.listen(config.serverPort);
 
 server.on('listening', () => console.log(`Server are running on port ${config.serverPort}`));
-server.on('error', (error: NodeJS.ErrnoException) => console.log(`Ocurred a erro ${error.message}`));
+server.on('error', (error: NodeJS.ErrnoException) => console.log(`Occurred a erro ${error.message}`));
