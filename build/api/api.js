@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+var error_handler_api_1 = require("./error-handler-api");
 var routes_1 = require("./routes/routes");
 var express = require("express");
 var morgan = require("morgan");
@@ -13,10 +14,10 @@ var Api = (function () {
         this.express.use(morgan('dev'));
         this.express.use(bodyParser.urlencoded({ extended: true }));
         this.express.use(bodyParser.json());
+        this.express.use(error_handler_api_1.errorHandlerApi);
         this._router(this.express);
     };
     Api.prototype._router = function (application) {
-        console.log('calling router');
         new routes_1.default(application);
     };
     return Api;
