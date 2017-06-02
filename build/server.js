@@ -6,4 +6,6 @@ var api_1 = require("./api/api");
 var config = require('./config/env/config')();
 var server = http.createServer(api_1.default);
 // Api.use(errorHandlerApi);
-server.listen(config.serverPort, function () { return console.log("Server are running on port " + config.serverPort + "  "); });
+server.listen(config.serverPort);
+server.on('listening', function () { return console.log("Server are running on port " + config.serverPort); });
+server.on('error', function (error) { return console.log("Ocurred a erro " + error.message); });
