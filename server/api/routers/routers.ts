@@ -1,13 +1,19 @@
-import { Application } from 'express';
+import { Application, Request, Response } from 'express';
 
 
 class Routers {
     constructor(application: Application) {
-
+        this._initRoutes(application);
     }
 
-    initRoutes(application: Application): void {
+    private _initRoutes(application: Application): void {
         application.route('/')
-            .get((req, res) => res.send('Hello word'));
+            .get((req: Request, res: Response) => res.send('Hello word'));
+
+        application.route('hello/:name')
+            .get((req: Request, res: Response) => res.send(`Hello, ${req.params.name}`));
+
     }
 }
+
+export default Routers;
