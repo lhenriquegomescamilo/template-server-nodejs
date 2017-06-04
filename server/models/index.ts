@@ -4,7 +4,7 @@ var fs = require('fs');
 var path = require('path');
 var Sequelize = require('sequelize');
 var basename = path.basename(module.filename);
-var config = require('../config/env.config')();
+var config = require('../config/env/config')();
 var env = config.env || 'development';
 var db = {};
 
@@ -24,11 +24,13 @@ fs
     db[model.name] = model;
   });
 
-Object.keys(db).forEach(function (modelName) {
-  if (db[modelName].associate) {
-    db[modelName].associate(db);
-  }
-});
+Object
+  .keys(db)
+  .forEach(function (modelName) {
+    if (db[modelName].associate) {
+      db[modelName].associate(db);
+    }
+  });
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
