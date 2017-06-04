@@ -11,8 +11,9 @@ class UserService implements UserInterface {
 
     constructor() { }
 
-    create(user: any) {
-        return model.User.create(user);
+    create(user: UserInterface) {
+        console.log(model.User);
+        return model.Users.create(user);
     }
 
     updateById(user: any) {
@@ -23,28 +24,30 @@ class UserService implements UserInterface {
     }
 
     findAll(): Bluebird<UserInterface[]> {
-        return model.User.findAll({
+        return model.Users.findAll({
             order: ['name']
         }).then(createUsers);
     }
 
     findById(id: number): Bluebird<UserDetailInterface> {
-        return model.User.findOne({
+        return model.Users.findOne({
             where: { id }
         }).then(createUserById);
     }
 
     findByEmail(email: string): Bluebird<UserDetailInterface> {
-        return model.User.findOne({
+        return model.Users.findOne({
             where: { email }
         }).then(createUserByEmail);
     }
 
 
     removeById(id: number) {
-        return model.User.destroy({
+        return model.Users.destroy({
             where: id
         });
     }
 
 }
+
+export default UserService;
