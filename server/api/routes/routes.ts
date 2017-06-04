@@ -6,8 +6,8 @@ class Routes {
     private _router: UserRoutes;
 
     constructor(application: Application) {
-        this._initRoutes(application);
         this._router = new UserRoutes();
+        this._initRoutes(application);
     }
 
     private _initRoutes(application: Application): void {

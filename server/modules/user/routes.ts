@@ -2,11 +2,10 @@ import { Request, Response } from 'express';
 
 class UserRoutes {
     constructor() {
-
     }
 
     index(request: Request, response: Response) {
-
+        
     }
 
     create(request: Request, response: Response) {

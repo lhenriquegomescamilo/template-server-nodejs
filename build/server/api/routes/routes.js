@@ -3,8 +3,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var routes_1 = require("../../modules/user/routes");
 var Routes = (function () {
     function Routes(application) {
-        this._initRoutes(application);
         this._router = new routes_1.default();
+        this._initRoutes(application);
     }
     Routes.prototype._initRoutes = function (application) {
         application.route('/api/users')
