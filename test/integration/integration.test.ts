@@ -23,7 +23,7 @@ describe('Tests of integration on router user', () => {
 
     beforeEach(done => {
         model.User
-            .destroy({where: {}})
+            .destroy({ where: {} })
             .then(() => model.User.create(userDefault))
             .then(user => model.User.create(userTest))
             .then(() => done());
@@ -47,6 +47,9 @@ describe('Tests of integration on router user', () => {
                 .get('/api/users')
                 .end((error, response) => {
                     expect(response.status).to.equal(HttpStatus.OK);
+                    expect(response.body.payload).to.be.an('array')
+                    expect(response.body.payload[0].name).to.be.equal(userDefault.name);
+                    expect(response.body.payload[0].email).to.be.equal(userDefault.email);
                     done(error);
                 });
 
@@ -56,9 +59,14 @@ describe('Tests of integration on router user', () => {
     describe('GET /api/users/:id', () => {
         it('Should return user by id', done => {
             request(app)
-                .get('/api/users/1')
+                .get(`/api/users/${userDefault.id}`)
                 .end((error, response) => {
                     expect(response.status).to.equal(HttpStatus.OK);
+                    expect(response.body.payload.id).to.be.equal(userDefault.id);
+                    expect(response.body.payload).to.have.all.keys([
+                        'id', 'name', 'email', 'password'
+                    ]);
+                    id = response.body.payload.id;
                     done(error);
                 });
         });
@@ -67,13 +75,19 @@ describe('Tests of integration on router user', () => {
     describe('POST /api/users', () => {
         it('Should create user', done => {
             const user = {
-                name: 'Test'
+                id: 2,
+                name: 'Second user test',
+                email: 'seconuser@email.com',
+                password: 'seconduserpassword'
             };
             request(app)
                 .post('/api/users')
                 .send(user)
                 .end((error, response) => {
                     expect(response.status).to.equal(HttpStatus.OK);
+                    expect(response.body.payload.id).to.be.equal(user.id);
+                    expect(response.body.payload.name).to.be.equal(user.name);
+                    expect(response.body.payload.email).to.be.equal(user.email);
                     done(error);
                 });
         });
