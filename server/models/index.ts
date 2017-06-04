@@ -9,9 +9,9 @@ var env = config.env || 'development';
 var db = {};
 
 if (config.dbURL) {
-  var sequelize = new Sequelize(process.env[config.dbURL]);
+  var sequelize = new Sequelize(process.env[config.postgres.dbURL]);
 } else {
-  var sequelize = new Sequelize(config.db, config.username, config.password, config);
+  var sequelize = new Sequelize(config.postgres.database, config.postgres.username, config.postgres.password, config.postgres);
 }
 
 fs
