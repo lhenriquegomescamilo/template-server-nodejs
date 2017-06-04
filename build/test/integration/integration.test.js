@@ -1,23 +1,22 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var helpers_1 = require("./config/helpers");
-describe('Tests of integration', function () {
+describe('Tests of integration on router user', function () {
     describe('GET /api/users/:id', function () {
-        it('Should be return the mensage Hello, Test with typescript', function (done) {
+        it('Should be return user by id', function (done) {
             var id = 1;
             helpers_1.request(helpers_1.app)
                 .get("/api/users/" + id)
                 .end(function (error, response) {
                 helpers_1.expect(response.status).to.equal(200);
-                helpers_1.expect(response.text).to.be.eql('Hello, Test with typescript');
                 done(error);
             });
         });
     });
-    describe('GET /api/users/', function () {
+    describe('GET /api/users', function () {
         it('Should return the json with all users', function (done) {
             helpers_1.request(helpers_1.app)
-                .get('/api/users/all')
+                .get('/api/users')
                 .end(function (error, response) {
                 helpers_1.expect(response.status).to.equal(200);
                 done(error);

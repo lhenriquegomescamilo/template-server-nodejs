@@ -1,25 +1,24 @@
 import { app, request, expect } from './config/helpers';
 
-describe('Tests of integration', () => {
+describe('Tests of integration on router user', () => {
 
 
     describe('GET /api/users/:id', () => {
-        it('Should be return the mensage Hello, Test with typescript', done => {
+        it('Should be return user by id', done => {
             const id = 1;
             request(app)
                 .get(`/api/users/${id}`)
                 .end((error, response) => {
                     expect(response.status).to.equal(200);
-                    expect(response.text).to.be.eql('Hello, Test with typescript');
                     done(error);
                 });
         });
     });
 
-    describe('GET /api/users/', () => {
+    describe('GET /api/users', () => {
         it('Should return the json with all users', done => {
             request(app)
-                .get('/api/users/all')
+                .get('/api/users')
                 .end((error, response) => {
                     expect(response.status).to.equal(200);
                     done(error);

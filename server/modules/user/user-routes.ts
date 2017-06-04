@@ -1,29 +1,31 @@
 import { Request, Response } from 'express';
 import UserController from './user-controller';
 
+let _userController: UserController;
 class UserRoutes {
-    private _userController: UserController;
+
 
     constructor() {
-        this._userController = new UserController();
+        _userController = new UserController();
     }
 
     index(request: Request, response: Response) {
-        return this._userController.findAll(request, response);
+        _userController.findAll(request, response);
     }
 
     create(request: Request, response: Response) {
-        return this._userController.create(request, response);
+        _userController.create(request, response);
 
     }
     findOne(request: Request, response: Response) {
-        return this._userController.findById(request, response);
+
+        _userController.findById(request, response);
     }
     updateOne(request: Request, response: Response) {
-        return this._userController.update(request, response);
+        _userController.update(request, response);
     }
     deleteOne(request: Request, response: Response) {
-        return this._userController.delete(request, response);
+        _userController.delete(request, response);
     }
 }
 
