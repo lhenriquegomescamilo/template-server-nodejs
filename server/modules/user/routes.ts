@@ -10,6 +10,7 @@ class UserRoutes {
 
     create(request: Request, response: Response) {
 
+
     }
     findOne(request: Request, response: Response) {
 
