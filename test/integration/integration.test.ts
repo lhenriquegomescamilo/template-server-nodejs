@@ -3,21 +3,11 @@ import { app, request, expect } from './config/helpers';
 describe('Tests of integration', () => {
 
 
-    describe('GET /', () => {
-        it('Should be return the mensagem Hello, wolrd', done => {
-            request(app).get('/').end((error, response) => {
-                expect(response.status).to.equal(200);
-                expect(response.text).to.be.eql('Hello, world!');
-                done(error);
-            });
-        });
-    });
-
-    describe('GET /hello/:name', () => {
+    describe('GET /api/users/:id', () => {
         it('Should be return the mensage Hello, Test with typescript', done => {
-            const name = 'Test with typescript';
+            const id = 1;
             request(app)
-                .get(`/hello/${name}`)
+                .get(`/api/users/${id}`)
                 .end((error, response) => {
                     expect(response.status).to.equal(200);
                     expect(response.text).to.be.eql('Hello, Test with typescript');
@@ -26,13 +16,13 @@ describe('Tests of integration', () => {
         });
     });
 
-    describe('GET /api/users/all', () => {
+    describe('GET /api/users/', () => {
         it('Should return the json with all users', done => {
             request(app)
                 .get('/api/users/all')
                 .end((error, response) => {
                     expect(response.status).to.equal(200);
-                })
+                });
         });
     });
 
@@ -62,19 +52,19 @@ describe('Tests of integration', () => {
 
     describe('PUT /api/users/:id', () => {
         it('Should update user by id', done => {
-            it('Should create user', done => {
-                const user = {
-                    id: 1,
-                    name: 'Test 1'
-                };
-                request(app)
-                    .put('/users/1/edit')
-                    .send(user)
-                    .end((error, response) => {
-                        expect(response.status).to.equal(200);
-                    })
-            });
+
+            const user = {
+                id: 1,
+                name: 'Test 1'
+            };
+            request(app)
+                .put(`/api/users/${user.id}`)
+                .send(user)
+                .end((error, response) => {
+                    expect(response.status).to.equal(200);
+                })
         });
+
     });
 
 
@@ -85,11 +75,10 @@ describe('Tests of integration', () => {
                 name: 'Test'
             };
             request(app)
-                .delete('/users/1/edit')
+                .delete(`/api/users/${user.id}`)
                 .end((error, response) => {
                     expect(response.status).to.equal(200);
                 })
         });
     });
-});
 });

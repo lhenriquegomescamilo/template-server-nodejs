@@ -1,4 +1,4 @@
-import UserRoutes from '../../modules/user/routes';
+import UserRoutes from '../../modules/user/user-routes';
 import { Application, Request, Response } from 'express';
 
 
@@ -19,9 +19,6 @@ class Routes {
             .get(this._router.findOne)
             .put(this._router.updateOne)
             .delete(this._router.deleteOne);
-
-        application.route('/hello/:name')
-            .get((req: Request, res: Response) => res.send(`Hello, ${req.params.name}`));
 
     }
 }

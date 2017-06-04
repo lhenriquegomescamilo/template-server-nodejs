@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var routes_1 = require("../../modules/user/routes");
+var user_routes_1 = require("../../modules/user/user-routes");
 var Routes = (function () {
     function Routes(application) {
-        this._router = new routes_1.default();
+        this._router = new user_routes_1.default();
         this._initRoutes(application);
     }
     Routes.prototype._initRoutes = function (application) {
@@ -14,8 +14,6 @@ var Routes = (function () {
             .get(this._router.findOne)
             .put(this._router.updateOne)
             .delete(this._router.deleteOne);
-        application.route('/hello/:name')
-            .get(function (req, res) { return res.send("Hello, " + req.params.name); });
     };
     return Routes;
 }());
