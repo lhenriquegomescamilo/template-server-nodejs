@@ -1,7 +1,33 @@
 import { app, request, expect } from './config/helpers';
-
+import * as HttpStatus from 'http-status';
 describe('Tests of integration on router user', () => {
+    'use strict';
 
+    const config = require('../../server/config/env/config')();
+    const model = require('../../server/models');
+
+    let id: number;
+    const userTest = {
+        id: 100,
+        name: 'User Test',
+        email: 'user@test.com.br',
+        password: 'test@123'
+    };
+
+    const userDefault = {
+        id: 1,
+        name: 'User Default',
+        email: 'user@defaul.com.br',
+        password: 'userdefault'
+    };
+
+    beforeEach(done => {
+        model.User
+            .destroy({where: {}})
+            .then(() => model.User.create(userDefault))
+            .then(user => model.User.create(userTest))
+            .then(() => done());
+    });
 
     describe('GET /api/users/:id', () => {
         it('Should be return user by id', done => {
@@ -9,7 +35,7 @@ describe('Tests of integration on router user', () => {
             request(app)
                 .get(`/api/users/${id}`)
                 .end((error, response) => {
-                    expect(response.status).to.equal(200);
+                    expect(response.status).to.equal(HttpStatus.OK);
                     done(error);
                 });
         });
@@ -20,7 +46,7 @@ describe('Tests of integration on router user', () => {
             request(app)
                 .get('/api/users')
                 .end((error, response) => {
-                    expect(response.status).to.equal(200);
+                    expect(response.status).to.equal(HttpStatus.OK);
                     done(error);
                 });
 
@@ -32,7 +58,7 @@ describe('Tests of integration on router user', () => {
             request(app)
                 .get('/api/users/1')
                 .end((error, response) => {
-                    expect(response.status).to.equal(200);
+                    expect(response.status).to.equal(HttpStatus.OK);
                     done(error);
                 });
         });
@@ -47,7 +73,7 @@ describe('Tests of integration on router user', () => {
                 .post('/api/users')
                 .send(user)
                 .end((error, response) => {
-                    expect(response.status).to.equal(200);
+                    expect(response.status).to.equal(HttpStatus.OK);
                     done(error);
                 });
         });
@@ -64,7 +90,7 @@ describe('Tests of integration on router user', () => {
                 .put(`/api/users/${user.id}`)
                 .send(user)
                 .end((error, response) => {
-                    expect(response.status).to.equal(200);
+                    expect(response.status).to.equal(HttpStatus.OK);
                     done(error);
                 });
         });
@@ -81,7 +107,7 @@ describe('Tests of integration on router user', () => {
             request(app)
                 .delete(`/api/users/${user.id}`)
                 .end((error, response) => {
-                    expect(response.status).to.equal(200);
+                    expect(response.status).to.equal(HttpStatus.OK);
                     done(error);
                 });
         });
