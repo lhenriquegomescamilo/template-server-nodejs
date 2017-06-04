@@ -22,7 +22,9 @@ describe('Tests of integration', () => {
                 .get('/api/users/all')
                 .end((error, response) => {
                     expect(response.status).to.equal(200);
+                    done(error);
                 });
+
         });
     });
 
@@ -32,6 +34,7 @@ describe('Tests of integration', () => {
                 .get('/api/users/1')
                 .end((error, response) => {
                     expect(response.status).to.equal(200);
+                    done(error);
                 });
         });
     });
@@ -46,7 +49,8 @@ describe('Tests of integration', () => {
                 .send(user)
                 .end((error, response) => {
                     expect(response.status).to.equal(200);
-                })
+                    done(error);
+                });
         });
     });
 
@@ -62,7 +66,8 @@ describe('Tests of integration', () => {
                 .send(user)
                 .end((error, response) => {
                     expect(response.status).to.equal(200);
-                })
+                    done(error);
+                });
         });
 
     });
@@ -78,7 +83,8 @@ describe('Tests of integration', () => {
                 .delete(`/api/users/${user.id}`)
                 .end((error, response) => {
                     expect(response.status).to.equal(200);
-                })
+                    done(error);
+                });
         });
     });
 });

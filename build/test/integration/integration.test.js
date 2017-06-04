@@ -20,6 +20,7 @@ describe('Tests of integration', function () {
                 .get('/api/users/all')
                 .end(function (error, response) {
                 helpers_1.expect(response.status).to.equal(200);
+                done(error);
             });
         });
     });
@@ -29,6 +30,7 @@ describe('Tests of integration', function () {
                 .get('/api/users/1')
                 .end(function (error, response) {
                 helpers_1.expect(response.status).to.equal(200);
+                done(error);
             });
         });
     });
@@ -42,6 +44,7 @@ describe('Tests of integration', function () {
                 .send(user)
                 .end(function (error, response) {
                 helpers_1.expect(response.status).to.equal(200);
+                done(error);
             });
         });
     });
@@ -56,6 +59,7 @@ describe('Tests of integration', function () {
                 .send(user)
                 .end(function (error, response) {
                 helpers_1.expect(response.status).to.equal(200);
+                done(error);
             });
         });
     });
@@ -69,6 +73,7 @@ describe('Tests of integration', function () {
                 .delete("/api/users/" + user.id)
                 .end(function (error, response) {
                 helpers_1.expect(response.status).to.equal(200);
+                done(error);
             });
         });
     });
