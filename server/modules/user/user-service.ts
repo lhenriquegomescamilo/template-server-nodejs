@@ -17,7 +17,8 @@ class UserService implements UserInterface {
 
     updateById(user: any) {
         return model.User.update(user, {
-            where: { id: user.id }
+            where: { id: user.id },
+            fields: ['name', 'email', 'password']
         }).then(createUserById);
     }
 
@@ -43,7 +44,7 @@ class UserService implements UserInterface {
     removeById(id: number) {
         return model.User.destroy({
             where: id
-        })
+        });
     }
 
 }
