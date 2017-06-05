@@ -5,7 +5,7 @@
         "test/**/*.ts",
         "test/*.ts"
     ],
-    "exclude": ["node_modules"],
+    "exclude": ["node_modules", ".npm"],
     "buildOnSave": true,
     "compileOnSave": true,
 
