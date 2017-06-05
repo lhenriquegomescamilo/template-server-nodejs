@@ -16,11 +16,11 @@ class UserService implements UserInterface {
         return model.Users.create(user);
     }
 
-    updateById(user: any) {
-        return model.User.update(user, {
-            where: { id: user.id },
+    updateById(id: number, user: any) {
+        return model.Users.update(user, {
+            where: { id },
             fields: ['name', 'email', 'password']
-        }).then(createUserById);
+        }).then(users => users);
     }
 
     findAll(): Bluebird<UserInterface[]> {
@@ -44,7 +44,7 @@ class UserService implements UserInterface {
 
     removeById(id: number) {
         return model.Users.destroy({
-            where: id
+            where: { id }
         });
     }
 
