@@ -10,31 +10,25 @@ class UserController {
 
     findAll(request: Request, response: Response) {
 
-        // this._defaultResponse(request, response, () => this._userService.findAll());
+        this._defaultResponse(request, response, () => this._userService.findAll());
 
-        this._userService.findAll()
-            .then(users => response.status(HttpStatus.OK).json({ payload: users }))
-            .catch(error => response.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ payload: error }))
+
 
     }
 
     private _defaultResponse(request: Request, response: Response, callback: Function) {
         callback()
-            .then(users => response.status(HttpStatus.OK).json({ payload: users }))
+            .then(data => response.status(HttpStatus.OK).json({ payload: data }))
             .catch(error => response.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ payload: error }))
     }
 
     create(request: Request, response: Response) {
-        this._userService.create(request.body)
-            .then(userCreated => response.status(HttpStatus.OK).json({ payload: userCreated }))
-            .catch(error => response.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ payload: error }));
+        this._defaultResponse(request, response, () => this._userService.create(request.body))
     }
 
     findById(request: Request, response: Response) {
         const userId = parseInt(request.params.id);
-        this._userService.findById(userId)
-            .then(user => response.status(HttpStatus.OK).json({ payload: user }))
-            .catch(error => response.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ payload: error }));
+        this._defaultResponse(request, response, () => this._userService.findById(userId));
     }
 
     update(request: Request, response: Response) {
