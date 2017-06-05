@@ -13,7 +13,7 @@
         "target": "es5",
         "module": "commonjs",
         "outDir": "build",
-        "watch": true,
+        "watch": false,
         "typeRoots": [
             "../node_modules/@types"
         ],

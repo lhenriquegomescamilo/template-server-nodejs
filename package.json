@@ -4,8 +4,8 @@
   "description": "API desenvolvida, com TS, ES6, SEQUELIZE",
   "main": "server/server.ts",
   "scripts": {
-    "start": "NODE_ENV=development ./node_modules/.bin/ts-node ./server/server.ts",
-    "builded": "NODE_ENV=development node ./build/server/server.js",
+    "compile": "tsc -p tsconfig.json",
+    "start": "NODE_ENV=development node ./build/server/server.js",
     "unit-test": "NODE_ENV=development mocha --opts build/test/unit/config/mocha.opts ./build/test/unit/unit.test.js ",
     "integration-test": "NODE_ENV=development mocha --opts build/test/integration/config/mocha.opts ./build/test/integration/integration.test.js",
     "test": "echo \"Error: no test specified\" && exit 1"
