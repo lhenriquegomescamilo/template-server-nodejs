@@ -22,11 +22,12 @@ describe('Tests of integration on router user', () => {
     };
 
     beforeEach(done => {
-        model.User
+        model.Users
             .destroy({ where: {} })
-            .then(() => model.User.create(userDefault))
-            .then(user => model.User.create(userTest))
-            .then(() => done());
+            .then(() => model.Users.create(userDefault))
+            .then(user => model.Users.create(userTest))
+            .then(() => done())
+            .catch(error => console.log(error));
     });
 
     describe('GET /api/users/:id', () => {
