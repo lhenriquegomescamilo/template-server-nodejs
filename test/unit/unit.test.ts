@@ -37,6 +37,17 @@ describe('Test Unit from Controller', () => {
     });
 
 
+    describe('Find user by id', () => {
+        it('find user by id', () => {
+            let idUser = 1;
+            const userService = new UserService()
+            return userService.findById(idUser).then(user => {
+                console.log('FIND BY USER ID', user);
+                expect(user.id).to.be.equal(idUser);
+            })
+        })
+    });
+
     describe('Method GET', () => {
         it('Should be return the list all users', () => {
             const userService = new UserService();
