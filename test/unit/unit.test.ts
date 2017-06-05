@@ -4,23 +4,49 @@ import UserService from '../../server/modules/user/user-service';
 
 
 describe('Test Unit from Controller', () => {
-
+    const userTest = {
+        id: 1,
+        name: "New unit test",
+        email: 'usernewunit@email.com',
+        password: '123456'
+    };
     describe('Method CREATE', () => {
         it('Should be create the new user', () => {
-            const newUser = {
-                id: 1,
-                name: "New unit test",
-                email: 'usernewunit@email.com',
-                password: '12 3456'
-            };
+
 
             const userService: UserService = new UserService();
-            return userService.create(newUser).then(data => {
+            return userService.create(userTest).then(data => {
                 expect(data.dataValues).to.have.all.keys(['email', 'id', 'name', 'password', 'updatedAt', 'createdAt']);
             });
 
         });
     });
+
+    describe('Find user by id', () => {
+        it('find user by id', () => {
+
+            const userService = new UserService()
+            return userService.findById(userTest.id).then(user => {
+                expect(user.id).to.be.equal(userTest.id);
+                expect(user.name).to.be.equal(userTest.name);
+                expect(user.email).to.be.equal(userTest.email)
+                expect(user.password).to.be.equal(userTest.password)
+            })
+        })
+    });
+
+    describe('Find user by email', () => {
+        it('find user by email', () => {
+            const userService = new UserService()
+            return userService.findByEmail(userTest.email).then(user => {
+                expect(user.id).to.be.equal(userTest.id);
+                expect(user.name).to.be.equal(userTest.name);
+                expect(user.email).to.be.equal(userTest.email)
+                expect(user.password).to.be.equal(userTest.password)
+            })
+        })
+    });
+
 
     describe('Method UPDATE', () => {
         it('Should be update the new user', () => {
@@ -37,16 +63,6 @@ describe('Test Unit from Controller', () => {
     });
 
 
-    describe('Find user by id', () => {
-        it('find user by id', () => {
-            let idUser = 1;
-            const userService = new UserService()
-            return userService.findById(idUser).then(user => {
-                console.log('FIND BY USER ID', user);
-                expect(user.id).to.be.equal(idUser);
-            })
-        })
-    });
 
     describe('Method GET', () => {
         it('Should be return the list all users', () => {
