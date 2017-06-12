@@ -1,4 +1,5 @@
-import { Request, Response } from 'express';
+import AuthConfig from '../../auth-config';
+import { Application, Request, Response } from 'express';
 import UserController from './user-controller';
 
 let _userController: UserController;
@@ -9,6 +10,19 @@ class UserRoutes {
         _userController = new UserController();
     }
 
+    routes(application: Application, auth: AuthConfig) {
+        application.route('/api/users')
+            .all(auth.authenticate())
+            .get((request: Request, response: Response) => this.index(request, response))
+            .post((request: Request, response: Response) => this.create(request, response));
+
+        application.route('/api/users/:id')
+            .all(auth.authenticate())
+            .get((request: Request, response: Response) => this.findOne(request, response))
+            .put((request: Request, response: Response) => this.updateOne(request, response))
+            .delete((request: Request, response: Response) => this.deleteOne(request, response));
+    }
+
     index(request: Request, response: Response) {
         _userController.findAll(request, response);
     }
@@ -17,7 +31,7 @@ class UserRoutes {
         _userController.create(request, response);
 
     }
-    
+
     findOne(request: Request, response: Response) {
         _userController.findById(request, response);
     }
