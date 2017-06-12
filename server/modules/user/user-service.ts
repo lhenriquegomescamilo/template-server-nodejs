@@ -36,9 +36,9 @@ class UserService implements UserInterface {
     }
 
     findByEmail(email: string): Bluebird<UserDetailInterface> {
-        return model.Users.findOne({
-            where: { email }
-        }).then(createUserByEmail);
+        return model.Users
+            .findOne({ where: { email } })
+            .then(createUserByEmail);
     }
 
 

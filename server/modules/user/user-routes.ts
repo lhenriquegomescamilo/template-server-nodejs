@@ -17,13 +17,15 @@ class UserRoutes {
         _userController.create(request, response);
 
     }
+    
     findOne(request: Request, response: Response) {
-
         _userController.findById(request, response);
     }
+
     updateOne(request: Request, response: Response) {
         _userController.update(request, response);
     }
+
     deleteOne(request: Request, response: Response) {
         _userController.delete(request, response);
     }
