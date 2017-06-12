@@ -1,8 +1,16 @@
 # Template server 
 
 ## Libs and frameworks
- * NodeJS, TypeScript, ES6, Sequelize, Postgres, Express, JWT
+ * NodeJS, TypeScript, ES6, Sequelize, Postgres, Express, Passport, JWT
  * Mocha, Chai, supertest, test-double
+
+## Run application
+ * npm start
+ * npm run start-dev 
+
+## Run tests
+ * npm run integration-test
+ * npm run integration-coverage
  
 ## Database
  * PostgreSQL
