@@ -55,7 +55,7 @@ describe('Tests of integration on router user', () => {
                 })
         });
 
-        it('Don`t should generate the token', done => {
+        it('Don`t must generate the token', done => {
             const invalidCredential = {
                 email: 'email@invalid.com',
                 password: 'somepassword'
@@ -85,7 +85,7 @@ describe('Tests of integration on router user', () => {
     });
 
     describe('GET /api/users', () => {
-        it('Should return the json with all users', done => {
+        it('Must return the json with all users', done => {
             request(app)
                 .get('/api/users')
                 .end((error, response) => {
@@ -100,7 +100,7 @@ describe('Tests of integration on router user', () => {
     });
 
     describe('GET /api/users/:id', () => {
-        it('Should return user by id', done => {
+        it('Must return user by id', done => {
             request(app)
                 .get(`/api/users/${userDefault.id}`)
                 .end((error, response) => {
@@ -116,7 +116,7 @@ describe('Tests of integration on router user', () => {
     });
 
     describe('POST /api/users', () => {
-        it('Should create user', done => {
+        it('Must create user', done => {
             const user = {
                 id: 2,
                 name: 'Second user test',
@@ -137,7 +137,7 @@ describe('Tests of integration on router user', () => {
     });
 
     describe('PUT /api/users/:id', () => {
-        it('Should update user by id', done => {
+        it('Must update user by id', done => {
 
             const user = {
                 id: 1,
@@ -156,7 +156,7 @@ describe('Tests of integration on router user', () => {
 
 
     describe('DELETE /api/users/:id', () => {
-        it('Should delete user by id', done => {
+        it('Must delete user by id', done => {
             const user = {
                 id: 1,
                 name: 'Test'
