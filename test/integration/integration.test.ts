@@ -1,5 +1,7 @@
+import * as jwt from 'jwt-simple';
 import { app, request, expect } from './config/helpers';
 import * as HttpStatus from 'http-status';
+
 describe('Tests of integration on router user', () => {
     'use strict';
 
@@ -7,6 +9,7 @@ describe('Tests of integration on router user', () => {
     const model = require('../../server/models');
 
     let id: number;
+    let token: string;
     const userTest = {
         id: 100,
         name: 'User Test',
@@ -25,9 +28,48 @@ describe('Tests of integration on router user', () => {
         model.Users
             .destroy({ where: {} })
             .then(() => model.Users.create(userDefault))
-            .then(user => model.Users.create(userTest))
-            .then(() => done())
+            .then(user => {
+                model.Users
+                    .create(userTest)
+                    .then(() => {
+                        token = jwt.encode({ id: user.id }, config.secret)
+                        done();
+                    })
+            })
             .catch(error => console.log(error));
+    });
+
+    describe('POST /auth', () => {
+        it('Have return a JWT', done => {
+            const credentials = {
+                email: userDefault.email,
+                password: userDefault.password
+            };
+            request(app)
+                .post('/auth')
+                .send(credentials)
+                .end((error, res) => {
+                    expect(res.status).to.equal(HttpStatus.OK);
+                    expect(res.body.token).to.be.equal(token);
+                    done(error);
+                })
+        });
+
+        it('Don`t should generate the token', done => {
+            const invalidCredential = {
+                email: 'email@invalid.com',
+                password: 'somepassword'
+            };
+
+            request(app)
+                .post('/auth')
+                .send(invalidCredential)
+                .end((error, res) => {
+                    expect(res.status).to.equal(HttpStatus.UNAUTHORIZED);
+                    expect(res.body).to.empty;
+                    done(error);
+                })
+        });
     });
 
     describe('GET /api/users/:id', () => {

@@ -1,4 +1,5 @@
-import TokenRoutes from '../../modules/auth/auth';
+import TokenRoutes from '../auth/token-routes';
+
 import AuthConfig from '../../auth-config';
 import UserRoutes from '../../modules/user/user-routes';
 import { Application, Request, Response } from 'express';
@@ -19,17 +20,17 @@ class Routes {
     private _initRoutes(application: Application): void {
         application.route('/api/users')
             .all(this._auth.authenticate())
-            .get(this._router.index)
-            .post(this._router.create)
+            .get((request: Request, response: Response) => this._router.index(request, response))
+            .post((request: Request, response: Response) => this._router.create(request, response));
 
         application.route('/api/users/:id')
             .all(this._auth.authenticate())
-            .get(this._router.findOne)
-            .put(this._router.updateOne)
-            .delete(this._router.deleteOne);
+            .get((request: Request, response: Response) => this._router.findOne(request, response))
+            .put((request: Request, response: Response) => this._router.updateOne(request, response))
+            .delete((request: Request, response: Response) => this._router.deleteOne(request, response));
 
         application.route('/auth')
-            .post(this._tokenRoute.auth);
+            .post((request: Request, response: Response) => this._tokenRoute.auth(request, response));
 
     }
 }

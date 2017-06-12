@@ -17,18 +17,20 @@ class HttpHandler {
     }
 
     static authSuccess(response: Response, credentialFromUser: any, userFromDb: any) {
-        const isMatch: Boolean = _.isEqual(credentialFromUser.password, userFromDb.passowrd);
+        const isMatch = _.isEqual(credentialFromUser.password, userFromDb.password);
         if (isMatch) {
             const payload = { id: userFromDb.id };
+            let objectToResponse = { token: jwt.encode(payload, config.secret) };
             response
                 .status(HttpStatus.OK)
-                .json({ token: jwt.enconde(payload, config.secret) })
+                .json(objectToResponse)
+                .end()
         } else {
             response.sendStatus(HttpStatus.UNAUTHORIZED);
         }
     }
-    static authFail(response: Response) {
-        response.sendStatus(HttpStatus.UNAUTHORIZED);
+    static authFail(response: Response, error) {
+        response.sendStatus(HttpStatus.UNAUTHORIZED).end();
     }
 }
 export default HttpHandler;

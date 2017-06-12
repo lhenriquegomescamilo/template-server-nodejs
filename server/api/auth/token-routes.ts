@@ -1,9 +1,8 @@
+import HttpHandler from '../handler/http-handler';
+import UserService from '../../modules/user/user-service';
+
 import { Request, Response } from 'express';
 import * as _ from 'lodash';
-
-import UserService from '../user/user-service';
-import HttpHandler from '../../api/handler/http-handler';
-
 
 class TokenRoutes {
     private _userService: UserService;
@@ -17,6 +16,7 @@ class TokenRoutes {
             email: request.body.email,
             password: request.body.password
         };
+
         if (credentials.hasOwnProperty('email') && credentials.hasOwnProperty('password')) {
             this._userService.findByEmail(credentials.email)
                 .then(_.partial(HttpHandler.authSuccess, response, credentials))
