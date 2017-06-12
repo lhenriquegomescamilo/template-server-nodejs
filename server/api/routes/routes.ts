@@ -1,19 +1,30 @@
+import TokenRoutes from '../auth/token-routes';
+
+import AuthConfig from '../../auth-config';
+import UserRoutes from '../../modules/user/user-routes';
 import { Application, Request, Response } from 'express';
 
 
 class Routes {
-    constructor(application: Application) {
+    private _userRouter: UserRoutes;
+    private _tokenRoute: TokenRoutes;
+    private _auth: AuthConfig;
+
+    constructor(application: Application, auth: AuthConfig) {
+        this._userRouter = new UserRoutes();
+        this._tokenRoute = new TokenRoutes();
+        this._auth = auth;
         this._initRoutes(application);
     }
 
     private _initRoutes(application: Application): void {
-        application.route('/')
-            .get((req: Request, res: Response) => res.send('Hello, world!'));
+        this._userRouter.routes(application, this._auth);
+        this._tokenRoute.routes(application);
 
-        application.route('/hello/:name')
-            .get((req: Request, res: Response) => res.send(`Hello, ${req.params.name}`));
+        
 
     }
+
 }
 
 export default Routes;
