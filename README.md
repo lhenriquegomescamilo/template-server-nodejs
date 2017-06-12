@@ -5,12 +5,12 @@
  * Mocha, Chai, supertest, test-double
 
 ## Run application
- * npm start
+ * npm run compile && npm start
  * npm run start-dev 
 
 ## Run tests
- * npm run integration-test
- * npm run integration-coverage
+ * npm run comiple && npm run integration-test
+ * npm run compile && npm run integration-coverage
  
 ## Database
  * PostgreSQL
