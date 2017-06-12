@@ -1,4 +1,4 @@
-# Template server 
+# Template server rest api
 * This project is a base template for nodejs applications, using the stack: TypeScript, ES6, Sequelize, Postgres, Express, Passport with JWT, Mocha, Chai, supertest, test-double.
 
 ## Pré Requirements
