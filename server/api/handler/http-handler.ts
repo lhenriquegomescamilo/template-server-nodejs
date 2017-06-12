@@ -3,6 +3,8 @@ import { Request, Response } from 'express';
 import * as jwt from 'jwt-simple';
 import * as HttpStatus from 'http-status';
 import * as _ from 'lodash';
+import * as bcrypt from 'bcrypt';
+
 const config = require('../../config/env/config')();
 
 class HttpHandler {
@@ -17,7 +19,7 @@ class HttpHandler {
     }
 
     static authSuccess(response: Response, credentialFromUser: any, userFromDb: any) {
-        const isMatch = _.isEqual(credentialFromUser.password, userFromDb.password);
+        const isMatch = bcrypt.compareSync(credentialFromUser.password, userFromDb.password);
         if (isMatch) {
             const payload = { id: userFromDb.id };
             let objectToResponse = { token: jwt.encode(payload, config.secret) };

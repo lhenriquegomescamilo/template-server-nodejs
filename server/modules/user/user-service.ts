@@ -12,14 +12,15 @@ class UserService implements UserInterface {
     constructor() { }
 
     create(user: UserInterface) {
-        console.log(model.User);
         return model.Users.create(user);
     }
 
     updateById(id: number, user: any) {
         return model.Users.update(user, {
             where: { id },
-            fields: ['name', 'email', 'password']
+            fields: ['name', 'email', 'password'],
+            hooks: true,
+            individualHooks: true,
         }).then(users => users);
     }
 
