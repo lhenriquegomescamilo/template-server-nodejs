@@ -18,15 +18,13 @@ class Routes {
     }
 
     private _initRoutes(application: Application): void {
-        this._routesOfUsers(application);
-        application.route('/auth')
-            .post((request: Request, response: Response) => this._tokenRoute.auth(request, response));
-
-    }
-
-    private _routesOfUsers(application: Application) {
         this._userRouter.routes(application, this._auth);
+        this._tokenRoute.routes(application);
+
+        
+
     }
+
 }
 
 export default Routes;
