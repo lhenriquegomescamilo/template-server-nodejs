@@ -63,6 +63,8 @@ describe('Tests of integration on router user', () => {
 
             request(app)
                 .post('/auth')
+                .set('Content-Type', 'application/json')
+                .set('Authorization', `JWT ${token}`)
                 .send(invalidCredential)
                 .end((error, res) => {
                     expect(res.status).to.equal(HttpStatus.UNAUTHORIZED);
@@ -77,6 +79,8 @@ describe('Tests of integration on router user', () => {
             const id = 1;
             request(app)
                 .get(`/api/users/${id}`)
+                .set('Content-Type', 'application/json')
+                .set('Authorization', `JWT ${token}`)
                 .end((error, response) => {
                     expect(response.status).to.equal(HttpStatus.OK);
                     done(error);
@@ -88,6 +92,8 @@ describe('Tests of integration on router user', () => {
         it('Must return the json with all users', done => {
             request(app)
                 .get('/api/users')
+                .set('Content-Type', 'application/json')
+                .set('Authorization', `JWT ${token}`)
                 .end((error, response) => {
                     expect(response.status).to.equal(HttpStatus.OK);
                     expect(response.body.payload).to.be.an('array')
@@ -103,6 +109,8 @@ describe('Tests of integration on router user', () => {
         it('Must return user by id', done => {
             request(app)
                 .get(`/api/users/${userDefault.id}`)
+                .set('Content-Type', 'application/json')
+                .set('Authorization', `JWT ${token}`)
                 .end((error, response) => {
                     expect(response.status).to.equal(HttpStatus.OK);
                     expect(response.body.payload.id).to.be.equal(userDefault.id);
@@ -125,6 +133,8 @@ describe('Tests of integration on router user', () => {
             };
             request(app)
                 .post('/api/users')
+                .set('Content-Type', 'application/json')
+                .set('Authorization', `JWT ${token}`)
                 .send(user)
                 .end((error, response) => {
                     expect(response.status).to.equal(HttpStatus.OK);
@@ -145,6 +155,8 @@ describe('Tests of integration on router user', () => {
             };
             request(app)
                 .put(`/api/users/${user.id}`)
+                .set('Content-Type', 'application/json')
+                .set('Authorization', `JWT ${token}`)
                 .send(user)
                 .end((error, response) => {
                     expect(response.status).to.equal(HttpStatus.OK);
@@ -163,6 +175,8 @@ describe('Tests of integration on router user', () => {
             };
             request(app)
                 .delete(`/api/users/${user.id}`)
+                .set('Content-Type', 'application/json')
+                .set('Authorization', `JWT ${token}`)
                 .end((error, response) => {
                     expect(response.status).to.equal(HttpStatus.OK);
                     done(error);
