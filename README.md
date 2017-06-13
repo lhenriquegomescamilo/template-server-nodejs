@@ -8,7 +8,6 @@
  * NodeJS 6.10.2+ Support ES6
  * NPM 3.10.10+ 
  * Docker lastest
- 
 ## Run postgres with docker
 First create the database postgres inside docker with command:
 ````
