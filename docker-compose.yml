@@ -1,0 +1,12 @@
+version: '2'
+
+services:
+  postgres:
+    restart: always
+    image: postgres
+    environment:
+      - POSTGRES_USER:'postgres'
+      - POSTGRES_PASSWORD:'postgres'
+      - POSTGRES_DB:'ts-api'
+    ports:
+      - '5432:5432'
