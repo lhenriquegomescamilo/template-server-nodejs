@@ -8,7 +8,7 @@ services:
 
 before_install:
   - docker pull postgres
-  - docker run -d -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres --name postgres -p 5432:5432 --restart=always postgres
+  #- docker run -d -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres --name postgres -p 5432:5432 --restart=always postgres
   - docker ps -a
 
 branches:
