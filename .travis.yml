@@ -11,6 +11,10 @@ before_install:
   - docker run -d -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres  -e POSTGRES_DB=ts-api --name postgres -p 5432 --restart=always postgres
   - docker ps -a
 
+# script:
+#   - npm test
+#   - istanbul cover node_modules/.bin/${test-framework}
+#   - codecov
 branches:
   only:
     - master
