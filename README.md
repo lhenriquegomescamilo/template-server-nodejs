@@ -11,7 +11,8 @@
 ## Run postgres with docker
 First create the database postgres inside docker with command:
 ````
-docker run -d -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres --name postgres -p 5432:5432 --restart=always postgre
+docker-compose build
+docker-compose up
 
 ````
 ## Configure the database name
