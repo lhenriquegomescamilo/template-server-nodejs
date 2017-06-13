@@ -4,14 +4,16 @@ node_js:
 sudo: required
 
 services:
-  - postgresql
+  - docker
 
 before_install:
-  - psql -c 'create database ts-api;' -U postgres
+  - docker pull postgres
+  - docker run --privileged -d -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres  -e POSTGRES_DB=ts-api --name postgres -p 5432 --restart=always postgres
+  - docker ps -a
 
 # script:
 #   - npm test
-#   - istanbul cover node_modules/.bin/${test-framework}
+#   - istanbul cover node_modules/.bin/$}{}
 #   - codecov
 branches:
   only:
