@@ -6,7 +6,7 @@ describe('Tests of integration on router user', () => {
     'use strict';
 
     const config = require('../../server/config/env/config')();
-    const model = require('../../server/models');
+    const models = require('../../server/models');
 
     let id: number;
     let token: string;
@@ -25,18 +25,23 @@ describe('Tests of integration on router user', () => {
     };
 
     beforeEach(done => {
-        model.Users
-            .destroy({ where: {} })
-            .then(() => model.Users.create(userDefault))
-            .then(user => {
-                model.Users
-                    .create(userTest)
-                    .then(() => {
-                        token = jwt.encode({ id: user.id }, config.secret)
-                        done();
+        models
+            .sequelize
+            .sync()
+            .then(() => {
+                models.Users
+                    .destroy({ where: {} })
+                    .then(() => models.Users.create(userDefault))
+                    .then(user => {
+                        models.Users
+                            .create(userTest)
+                            .then(() => {
+                                token = jwt.encode({ id: user.id }, config.secret)
+                                done();
+                            })
                     })
-            })
-            .catch(error => console.log(error));
+                    .catch(error => console.log(error));
+            });
     });
 
     describe('POST /auth', () => {
