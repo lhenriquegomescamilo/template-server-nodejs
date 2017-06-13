@@ -1,3 +1,6 @@
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://opensource.org/licenses/MIT)
+[![Travis](https://img.shields.io/travis/lhenriquegomescamilo/template-server-nodejs.svg)](https://img.shields.io/travis/lhenriquegomescamilo/template-server-nodejs.svg)
+
 # Template server rest api
  This project is a base template for nodejs applications, using the stack: TypeScript, ES6, Sequelize, Postgres, Express, Passport with JWT, Mocha, Chai, supertest, test-double.
 

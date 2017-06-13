@@ -11,7 +11,7 @@
     "integration-test": " npm run compile && NODE_ENV=development mocha --opts build/test/integration/config/mocha.opts ./build/test/integration/integration.test.js",
     "integration-coverage": "nyc --reporter=html npm run integration-test",
     "unit-coverage": "nyc --reporter=html  npm run compile && npm run unit-test",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npm run compile && npm run integration-test"
   },
   "keywords": [
     "API",
@@ -23,7 +23,7 @@
   "license": "MIT",
   "dependencies": {
     "@types/lodash": "^4.14.65",
-    "bcrypt": "^1.0.2",
+    "bcryptjs": "^2.4.3",
     "bluebird": "^3.5.0",
     "body-parser": "^1.17.2",
     "express": "^4.15.3",

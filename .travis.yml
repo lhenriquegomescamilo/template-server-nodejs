@@ -1,0 +1,20 @@
+language: node_js
+node_js:
+  - 6.10
+sudo: required
+
+services:
+  - postgresql
+
+before_install:
+  - psql -c 'create database "ts-api";' -U postgres
+
+
+# script:
+#   - npm test
+#   - istanbul cover node_modules/.bin/$}{}
+#   - codecov
+branches:
+  only:
+    - master
+    - dev

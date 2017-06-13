@@ -1,4 +1,4 @@
-import * as bcrypt from 'bcrypt';
+import * as bcrypt from 'bcryptjs';
 const NUMBER_OF_RUNS = 10;
 export default function (sequelize, DataTypes) {
     const User = sequelize.define('Users', {
