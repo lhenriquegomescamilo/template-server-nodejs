@@ -11,7 +11,7 @@
     "integration-test": " npm run compile && NODE_ENV=development mocha --opts build/test/integration/config/mocha.opts ./build/test/integration/integration.test.js",
     "integration-coverage": "nyc --reporter=html npm run integration-test",
     "unit-coverage": "nyc --reporter=html  npm run compile && npm run unit-test",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npm run comiple && npm run integration-test"
   },
   "keywords": [
     "API",
