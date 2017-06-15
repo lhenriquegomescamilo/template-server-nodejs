@@ -11,12 +11,10 @@
 ## Run postgres with docker
 First create the database postgres inside docker with command:
 ````
-docker-compose build
 docker-compose up
 
 ````
-## Configure the database name
-With the pgAdmin openned, create the database with name: ts-api and, ts-api-test
+The docker compose will create the database called ts-api
 
 
 ## Run application
@@ -24,9 +22,12 @@ Inside the project root folder use the command
 ````
   npm install
   npm run compile && npm start
-  npm run start-dev 
 ````
 
+To start the server with ts-node, use the command:
+````
+npm run start-dev
+````
 ## Run tests
 ````
   npm run comiple && npm run integration-test
