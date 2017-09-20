@@ -32,4 +32,5 @@ npm run start-dev
 ````
   npm run comiple && npm run integration-test
   npm run compile && npm run integration-coverage
+  npm
 ````
