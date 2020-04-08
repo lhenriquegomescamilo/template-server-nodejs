@@ -1,5 +1,5 @@
 {
-  "name": "typescript-course",
+  "name": "typescript-course-to-the-sky",
   "version": "1.0.0",
   "description": "API desenvolvida, com TS, ES6, SEQUELIZE",
   "main": "server/server.ts",
